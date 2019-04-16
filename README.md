@@ -20,7 +20,7 @@
 
 **8. Load the phenotype data for the samples**  
 
-**9. Read in hte expression data that were calculated by StringTie.**  
+**9. Read in te expression data that were calculated by StringTie.**  
 
 **10. Filter to remove low-abundance genes**  
 
