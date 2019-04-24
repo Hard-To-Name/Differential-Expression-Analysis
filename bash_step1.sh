@@ -16,8 +16,8 @@ module load hisat2
 module load samtools
 module load stringtie
 
-##hisat2 -p 1 --dta -x chrX_data/indexes/chrX_tran -1 ${GZ_DIR}${SEED}${GZ_1} -2 ${GZ_DIR}${SEED}${GZ_2} -S ${SEED}_chrX.sam
+hisat2 -p 1 --dta -x chrX_data/indexes/chrX_tran -1 ${GZ_DIR}${SEED}${GZ_1} -2 ${GZ_DIR}${SEED}${GZ_2} -S ${SEED}_chrX.sam
 
-##samtools sort -@ 1 -o ${SEED}_chrX.bam ${SEED}_chrX.sam
+samtools sort -@ 1 -o ${SEED}_chrX.bam ${SEED}_chrX.sam
 
 stringtie -p 1 -G ${GTF} -o ${SEED}_chrX.gtf -l ${SEED} ${SEED}_chrX.bam
