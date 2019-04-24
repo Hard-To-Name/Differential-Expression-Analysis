@@ -21,4 +21,3 @@ stringtie --merge -p 1 -G ${GTF} -o stringtie_merged.gtf chrX_data/mergelist.txt
 ${GFF_COMPARE} -r ${GTF} -G -o merged stringtie_merged.gtf
 
 stringtie -e -B -p 1 -G stringtie_merged.gtf -o ${BGN_DATA_DIR}${SEED}/${SEED}_chrX.gtf ${SEED}_chrX.bam
-~
