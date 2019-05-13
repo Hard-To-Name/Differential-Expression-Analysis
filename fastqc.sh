@@ -10,4 +10,5 @@ SAMPLE=$(head -n ${SGE_TASK_ID} samples.txt | tail -n 1)
 
 module load fastqc
 
+fastqc ${SAMPLE}_1.fastq.gz
 fastqc ${SAMPLE}_2.fastq.gz
