@@ -15,7 +15,8 @@ ${SAMPLE}_1_unpaired.fastq.gz \
 ${SAMPLE}_2_paired.fastq.gz \
 ${SAMPLE}_2_unpaired.fastq.gz \
 ILLUMINACLIP:data/users/aekimura/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 \
-LEADING:3 \
-TRAILING:3 \
+LEADING:0 \
+TRAILING:0 \
 SLIDINGWINDOW:4:15 \
-MINLEN:36
+MINLEN:5 \
+AVGQUAL:20
