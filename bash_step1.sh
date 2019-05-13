@@ -1,23 +1,24 @@
 #!/bin/bash
-#$ -N Step_1
-#$ -t 1-12
+
+#$ -N Steps1-3
+#$ -t 1-8
 #$ -ckpt restart
 #$ -q bio,abio*,pub64,free64,epyc
 #$ -pe openmp 1
-#$ -R y
 
-SEED=$(head -n ${SGE_TASK_ID} samples.txt | tail -n 1)
-GZ_DIR="chrX_data/samples/"
-GTF="chrX_data/genes/chrX.gtf"
-GZ_1="_chrX_1.fastq.gz"
-GZ_2="_chrX_2.fastq.gz"
+SAMPLE=$(head -n ${SGE_TASK_ID} samples.txt | tail -n 1)
+GZ_DIR="S288C_data/samples/"
+GZ_1="_1_paired.fastq.gz"
+GZ_2="_2_paired.fastq.gz"
+
 
 module load hisat2
+hisat2 -p 1 --dta -x S288C_data/indexes/S288C -1 ${GZ_DIR}${SAMPLE}${GZ_1} -2 ${GZ_DIR}${SAMPLE}${GZ_2} -S ${SAMPLE}_S288C.sam
+
+
 module load samtools
+samtools sort -@ 1 -o ${SAMPLE}_S288C.bam ${SAMPLE}_S288C.sam
+
+
 module load stringtie
-
-hisat2 -p 1 --dta -x chrX_data/indexes/chrX_tran -1 ${GZ_DIR}${SEED}${GZ_1} -2 ${GZ_DIR}${SEED}${GZ_2} -S ${SEED}_chrX.sam
-
-samtools sort -@ 1 -o ${SEED}_chrX.bam ${SEED}_chrX.sam
-
-stringtie -p 1 -G ${GTF} -o ${SEED}_chrX.gtf -l ${SEED} ${SEED}_chrX.bam
+stringtie -p 1 -G S288C_data/genes/S288C.gtf -o ${SAMPLE}_S288C.gtf -l ${SAMPLE} ${SAMPLE}_S288C.bam
