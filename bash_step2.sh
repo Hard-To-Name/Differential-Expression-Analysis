@@ -1,10 +1,9 @@
 #!/bin/bash
-#$ -N Step_1
-#$ -t 1
-#$ -ckpt restart
+
+#$ -N Step_2
+#$ -ckp restart
 #$ -q bio,abio*,pub64,free64,epyc
 #$ -pe openmp 1
-#$ -R y
 
 GZ_DIR="chrX_data/samples/"
 GTF="chrX_data/genes/chrX.gtf"
