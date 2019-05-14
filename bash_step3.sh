@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#$ -N Steps4-5
+#$ -N Step6
 #$ -t 1-8
 #$ -ckpt restart
 #$ -q bio,abio*,pub64,free64,epyc
