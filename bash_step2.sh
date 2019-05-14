@@ -9,5 +9,5 @@
 module load stringtie
 stringtie --merge -p 1 -G S288C_data/genes/S288C.gtf -o stringtie_merged.gtf  S288C_data/mergelist.txt
 
-modlue load gffcompare
-gffcompare -r S288C_data/genes/S288C.gtf -G -o merged stringtie_merged.gtf
+
+/data/users/aekimura/bin/gffcompare -r S288C_data/genes/S288C.gtf -G -o merged stringtie_merged.gtf
