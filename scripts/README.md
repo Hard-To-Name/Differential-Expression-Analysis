@@ -1,5 +1,5 @@
 # File Structure
-  
+```
 .  
 ├── scripts  
 |   ├── pipeline.sh # include every other bash scripts in order  
@@ -25,3 +25,4 @@
 └── ballgown  
     ├── *.bam after merge  
     └── *.gtf after merge  
+```
