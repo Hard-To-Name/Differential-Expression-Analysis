@@ -14,6 +14,7 @@ REFERENCE=../S288C_reference_genome_R64-2-1_20150113/
 
 if [ ! -d ../results ]; then
   mkdir -p ../results;
+fi
 
 module load hisat2
 hisat2 -p 1 --dta -x ${REFERENCE}index/S288C -1 ${GZ_DIR}${SAMPLE}${GZ_1} -2 ${GZ_DIR}${SAMPLE}${GZ_2} -S ../results/${SAMPLE}_S288C.sam
