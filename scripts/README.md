@@ -11,7 +11,7 @@
 |   └── trimmomatic  
 |       ├── *_paired.fastq.gz  
 |       └── *_unpaired.fastq.gz  
-└── S288C_reference_genome_R64-2-1_20150113  
+├── S288C_reference_genome_R64-2-1_20150113  
 |   ├── index  
 |   |   └── *.ht2  
 |   ├── .gtf of reference genome  
