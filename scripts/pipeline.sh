@@ -1,0 +1,10 @@
+./download_fastq.sh
+./fastqc.sh
+./clean_fsa.sh
+./gffread.sh
+./index_builder.sh
+./trimmomatic.sh
+./bash_step1.sh
+./bash_step2.sh
+./bash_step3.sh
+./R_script.sh
