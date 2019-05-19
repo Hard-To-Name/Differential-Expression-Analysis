@@ -18,7 +18,7 @@ pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype.csv"
 bg_genome = ballgown(dataDir = "../ballgown", samplePattern = "SRR", pData=pheno_data) 
 
 ###10. Filter to remove low-abundance genes
-bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=FALSE)
+bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=TRUE)
 
 ###11. Identify transcripts that show statistically significant differences between groups
 results_transcripts = stattest(bg_genome_filt, feature="transcript",covariate="temperature",adjustvars = c("population"), getFC=TRUE, meas="FPKM")
