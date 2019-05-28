@@ -12,7 +12,7 @@ library(dplyr)
 library(devtools)
 
 ###8. Load phenotype data for the samples
-pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype.csv")
+pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype1.csv")
 
 ###9. Read in the expression data that were calculated by StringTie
 bg_genome = ballgown(dataDir = "../ballgown", samplePattern = "SRR", pData=pheno_data) 
@@ -21,10 +21,10 @@ bg_genome = ballgown(dataDir = "../ballgown", samplePattern = "SRR", pData=pheno
 bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=TRUE)
 
 ###11. Identify transcripts that show statistically significant differences between groups
-results_transcripts = stattest(bg_genome_filt, feature="transcript",covariate="temperature",adjustvars = c("population"), getFC=TRUE, meas="FPKM")
+results_transcripts = stattest(bg_genome_filt, feature="transcript", covariate="population", getFC=TRUE, meas="FPKM")
 
 ###12. Identify genes that show statistically significant differences between groups
-results_genes = stattest(bg_genome_filt, feature="gene", covariate="temperature", adjustvars = c("population"), getFC=TRUE, meas="FPKM")
+results_genes = stattest(bg_genome_filt, feature="gene", covariate="population", getFC=TRUE, meas="FPKM")
 
 ###13. Add gene names and gene IDs to the results_transcripts data frame
 results_transcripts = data.frame(geneNames=ballgown::geneNames(bg_genome_filt), geneIDs=ballgown::geneIDs(bg_genome_filt), results_transcripts)
