@@ -15,7 +15,7 @@ library(devtools)
 pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype1.csv")
 
 ###9. Read in the expression data that were calculated by StringTie
-bg_genome = ballgown(dataDir = "../ballgown", samplePattern = "SRR", pData=pheno_data) 
+bg_genome = ballgown(dataDir = "../ballgown/temp30", samplePattern = "SRR", pData=pheno_data) 
 
 ###10. Filter to remove low-abundance genes
 bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=TRUE)
@@ -34,8 +34,8 @@ results_transcripts = arrange(results_transcripts,pval)
 results_genes = arrange(results_genes,pval)
 
 ###15. Write the results to a csv file that can be shared and distributed
-write.csv(results_transcripts, "../results/genome_transcript_results.csv", row.names=FALSE) 
-write.csv(results_genes, "../results/genome_gene_results.csv", row.names=FALSE) 
+write.csv(results_transcripts, "../results/genome_transcript_results_temp30.csv", row.names=FALSE) 
+write.csv(results_genes, "../results/genome_gene_results_temp30.csv", row.names=FALSE) 
 
 ###16. Identify transcripts and genes with a q value < 0.05
 subset(results_transcripts,results_transcripts$qval<0.05) 
