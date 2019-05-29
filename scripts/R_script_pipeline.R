@@ -48,16 +48,16 @@ palette(tropical)
 ###18. Show the distribution of gene abundances (measured as FPKM values) across samples
 fpkm = texpr(bg_genome,meas="FPKM")
 fpkm = log2(fpkm+1)
-boxplot(fpkm,col=as.numeric(pheno_data$temperature),las=2,ylab='log2(FPKM+1)')
+boxplot(fpkm,col=as.numeric(pheno_data$population),las=2,ylab='log2(FPKM+1)')
 
 ###19. Make plots of individual transcripts across samples
-ballgown::transcriptNames(bg_genome)[12] ##      12 ## "NM_012227" 
-ballgown::geneNames(bg_genome)[12] ##      12 ## "GTPBP6" 
-plot(fpkm[12,] ~ pheno_data$temperature, border=c(1,2), main=paste(ballgown::geneNames(bg_genome)[12],' : ', ballgown::transcriptNames(bg_genome)[12]),pch=19, xlab="Temperature", ylab='log2(FPKM+1)')
-points(fpkm[12,] ~ jitter(as.numeric(pheno_data$temperature)), col=as.numeric(pheno_data$temperature))
+ballgown::transcriptNames(bg_genome)[1200] ##      12 ## "YBR040W_mRNA" 
+ballgown::geneNames(bg_genome)[1200] ##      12 ## "FIG1" 
+plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::geneNames(bg_genome)[1200],' : ', ballgown::transcriptNames(bg_genome)[1200]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
+points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(pheno_data$population))
 
 ###20. Plot the structure and expression levels in a sample of all transcripts that share the same gene locus
-plotTranscripts(ballgown::geneIDs(bg_genome)[1729], bg_genome, main=c('Gene XIST in sample SRR1257637'), sample=c('SRR1257793'))
+plotTranscripts(ballgown::geneIDs(bg_genome)[1729], bg_genome, main=c('Gene XIST in sample SRR1257640'), sample=c('SRR1257640'))
 
 ###21. Plot the average expression levels for all transcripts of a gene within different groups using the plotMeansfunction
-plotMeans('MSTRG.56', bg_genome_filt,groupvar="temperature",legend=FALSE)
+plotMeans('MSTRG.388', bg_genome_filt,groupvar="population",legend=FALSE) ## with qval = 0.337
