@@ -23,6 +23,6 @@
 |   ├── *.bam before merge  
 |   └── *.gtf before merge  
 └── ballgown  
-    ├── *.bam after merge  
-    └── *.gtf after merge  
+    ├── temp30 (data for temperature 30)  
+    └── temp37 (data for temperature 37)  
 ```
