@@ -16,13 +16,19 @@ if [ ! -d ../results ]; then
   mkdir -p ../results;
 fi
 
-module load hisat2
+#module load hisat2
+
+source ~/.miniconda3testrc
+conda activate hisat2
+
 hisat2 -p 1 --dta -x ${REFERENCE}index/S288C -1 ${GZ_DIR}${SAMPLE}${GZ_1} -2 ${GZ_DIR}${SAMPLE}${GZ_2} -S ../results/${SAMPLE}_S288C.sam
 
 
-module load samtools
+#module load samtools
 samtools sort -@ 1 -o ../results/${SAMPLE}_S288C.bam ../results/${SAMPLE}_S288C.sam
 
 
-module load stringtie
-stringtie -p 1 -G ${REFERENCE}/S288C.gtf -o ../results/${SAMPLE}_S288C.gtf -l ../results/${SAMPLE} ../results/${SAMPLE}_S288C.bam
+#module load stringtie
+stringtie -p 1 -G ${REFERENCE}S288C.gtf -o ../results/${SAMPLE}_S288C.gtf -l ../results/${SAMPLE} ../results/${SAMPLE}_S288C.bam
+
+conda deactivate

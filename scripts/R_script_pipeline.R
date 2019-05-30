@@ -12,19 +12,19 @@ library(dplyr)
 library(devtools)
 
 ###8. Load phenotype data for the samples
-pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype1.csv")
+pheno_data = read.csv("../S288C_reference_genome_R64-2-1_20150113/phenotype.csv")
 
 ###9. Read in the expression data that were calculated by StringTie
-bg_genome = ballgown(dataDir = "../ballgown/temp30", samplePattern = "SRR", pData=pheno_data) 
+bg_genome = ballgown(dataDir = "../ballgown", samplePattern = "SRR", pData = pheno_data) 
 
 ###10. Filter to remove low-abundance genes
-bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=TRUE)
+bg_genome_filt = subset(bg_genome, "rowVars(texpr(bg_genome)) > 1", genomesubset=FALSE)
 
 ###11. Identify transcripts that show statistically significant differences between groups
-results_transcripts = stattest(bg_genome_filt, feature="transcript", covariate="population", getFC=TRUE, meas="FPKM")
+results_transcripts = stattest(bg_genome_filt, feature="transcript",covariate="temperature",adjustvars = c("population"), getFC=TRUE, meas="FPKM")
 
 ###12. Identify genes that show statistically significant differences between groups
-results_genes = stattest(bg_genome_filt, feature="gene", covariate="population", getFC=TRUE, meas="FPKM")
+results_genes = stattest(bg_genome_filt, feature="gene", covariate="temperature", adjustvars = c("population"), getFC=TRUE, meas="FPKM")
 
 ###13. Add gene names and gene IDs to the results_transcripts data frame
 results_transcripts = data.frame(geneNames=ballgown::geneNames(bg_genome_filt), geneIDs=ballgown::geneIDs(bg_genome_filt), results_transcripts)
@@ -34,8 +34,8 @@ results_transcripts = arrange(results_transcripts,pval)
 results_genes = arrange(results_genes,pval)
 
 ###15. Write the results to a csv file that can be shared and distributed
-write.csv(results_transcripts, "../results/genome_transcript_results_temp30.csv", row.names=FALSE) 
-write.csv(results_genes, "../results/genome_gene_results_temp30.csv", row.names=FALSE) 
+write.csv(results_transcripts, "../results/genome_transcript_results.csv", row.names=FALSE) 
+write.csv(results_genes, "../results/genome_gene_results.csv", row.names=FALSE) 
 
 ###16. Identify transcripts and genes with a q value < 0.05
 subset(results_transcripts,results_transcripts$qval<0.05) 
@@ -48,16 +48,16 @@ palette(tropical)
 ###18. Show the distribution of gene abundances (measured as FPKM values) across samples
 fpkm = texpr(bg_genome,meas="FPKM")
 fpkm = log2(fpkm+1)
-boxplot(fpkm,col=as.numeric(pheno_data$population),las=2,ylab='log2(FPKM+1)')
+boxplot(fpkm,col=as.numeric(pheno_data$temperature),las=2,ylab='log2(FPKM+1)')
 
 ###19. Make plots of individual transcripts across samples
-ballgown::transcriptNames(bg_genome)[1200] ##      12 ## "YBR040W_mRNA" 
-ballgown::geneNames(bg_genome)[1200] ##      12 ## "FIG1" 
-plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::geneNames(bg_genome)[1200],' : ', ballgown::transcriptNames(bg_genome)[1200]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
-points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(pheno_data$population))
+ballgown::transcriptNames(bg_genome)[12] ##      12 ## "NM_012227" 
+ballgown::geneNames(bg_genome)[12] ##      12 ## "GTPBP6" 
+plot(fpkm[12,] ~ pheno_data$temperature, border=c(1,2), main=paste(ballgown::geneNames(bg_genome)[12],' : ', ballgown::transcriptNames(bg_genome)[12]),pch=19, xlab="Temperature", ylab='log2(FPKM+1)')
+points(fpkm[12,] ~ jitter(as.numeric(pheno_data$temperature)), col=as.numeric(pheno_data$temperature))
 
 ###20. Plot the structure and expression levels in a sample of all transcripts that share the same gene locus
-plotTranscripts(ballgown::geneIDs(bg_genome)[1729], bg_genome, main=c('Gene XIST in sample SRR1257640'), sample=c('SRR1257640'))
+plotTranscripts(ballgown::geneIDs(bg_genome)[1729], bg_genome, main=c('Gene XIST in sample SRR1257637'), sample=c('SRR1257793'))
 
 ###21. Plot the average expression levels for all transcripts of a gene within different groups using the plotMeansfunction
-plotMeans('MSTRG.388', bg_genome_filt,groupvar="population",legend=FALSE) ## with qval = 0.337
+plotMeans('MSTRG.56', bg_genome_filt,groupvar="temperature",legend=FALSE)

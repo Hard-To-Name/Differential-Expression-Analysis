@@ -8,6 +8,9 @@
 
 FASTA_LOC=../S288C_reference_genome_R64-2-1_20150113/
 
-module load cufflinks
+source ~/.miniconda3testrc
+conda activate hisat2 
 
 gffread ${FASTA_LOC}saccharomyces_cerevisiae_R64-2-1_20150113.gff -T -o ${FASTA_LOC}S288C.gtf
+
+conda deactivate

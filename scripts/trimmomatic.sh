@@ -6,6 +6,9 @@
 #$ -q bio,abio*,pub64,free64,epyc
 #$ -pe openmp 1
 
+source ~/.miniconda3testrc
+conda activate trimmomatic
+
 FASTQ_LOC=../data/
 SAMPLE=$(head -n ${SGE_TASK_ID} ${FASTQ_LOC}samples.txt | tail -n 1)
 
@@ -27,3 +30,5 @@ TRAILING:0 \
 SLIDINGWINDOW:4:15 \
 MINLEN:5 \
 AVGQUAL:20
+
+conda deactivate

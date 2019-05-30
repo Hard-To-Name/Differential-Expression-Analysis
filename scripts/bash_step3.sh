@@ -13,5 +13,10 @@ if [ ! -d ../ballgown ]; then
   mkdir -p ../ballgown;
 fi
 
-module load stringtie
-stringtie -e -B -p 1 -G ${REFERENCE}stringtie_merged.gtf -o ../ballgown/${SAMPLE}/${SAMPLE}_S288C.gtf ../ballgown/${SAMPLE}_S288C.bam
+#module load stringtie
+source ~/.miniconda3testrc
+conda activate hisat2
+
+stringtie -e -B -p 1 -G ${REFERENCE}stringtie_merged.gtf -o ../ballgown/${SAMPLE}/${SAMPLE}_S288C.gtf ../results/${SAMPLE}_S288C.bam
+
+conda deactivate
