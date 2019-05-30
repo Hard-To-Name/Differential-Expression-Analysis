@@ -131,7 +131,7 @@ Use gffcompare to compare and compute the estimated accuracy of the merged .gtf 
 **6. Estimate transcript abundances and create table counts for Ballgown**  
 Use stringtie to generate .gtf file and .bam file for each sample reads based on the merged annotation file
 
-**7. Perform statistical analysis
+**7. Perform statistical analysis**
 
 * Load relevant R packages
 
@@ -170,3 +170,7 @@ Use stringtie to generate .gtf file and .bam file for each sample reads based on
 ```./scripts/bash_step3.sh```: Step 6  
 ```./scripts/R_script.sh```: Step 7  
 (```./scripts/R_script_pipeline.R``` includes all R codes for step 7)
+
+***
+
+# Conclusion
