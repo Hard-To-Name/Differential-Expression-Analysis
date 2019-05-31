@@ -84,7 +84,7 @@ Download ```S288C_reference_genome_R64-2-1_20150113.tgz``` and unzip it to ```./
 ## Preprocessing
 
 #### Quality Measurement of Sample Reads
-Use FASTQC to measure the quality scores (phred) across all bases of each sample reads. Results are available at ```./data/fastqc```
+Use FASTQC to measure the quality scores (phred) across all bases of each sample. Results are available at ```./data/fastqc```
 
 #### Cleaning Reference Genome
 Execute ```./scripts/clean_fsa.sh``` to remove unnecessary headers of all .fastq files
@@ -93,7 +93,7 @@ Execute ```./scripts/clean_fsa.sh``` to remove unnecessary headers of all .fastq
 Under conda environment trimmomatic, execute ```./scripts/trimmomatic.sh``` to generate both paired reads and unpaired reads at ```./data/trimmomatic```. (Only paired data are used)
 
 #### Building Index
-Under conda environment hisat2, execute ```./scripts/index_builder.sh``` to build HISAT2 index for each sample read
+Under conda environment hisat2, execute ```./scripts/index_builder.sh``` to build HISAT2 index for the reference genome
 
 #### Converting gff3 to gtf
 Under conda environment hisat2, execute ```./scripts/gffread.sh``` to convert reference genome annotation file in .gff3 format to ballgown required format .gtf
