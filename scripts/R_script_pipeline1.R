@@ -42,7 +42,7 @@ subset(results_transcripts,results_transcripts$qval<0.05)
 subset(results_genes,results_genes$qval<0.05)
 
 ###17. Plotting (optional)
-tropical= c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow') 
+tropical= c('darkorange', 'dodgerblue', 'hotpink', 'yellow') 
 palette(tropical)
 
 ###18. Show the distribution of gene abundances (measured as FPKM values) across samples
