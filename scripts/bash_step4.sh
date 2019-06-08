@@ -10,6 +10,6 @@ conda activate bedtools
 
 REFERENCE=../S288C_reference_genome_R64-2-1_20150113/
 
-bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113.fsa -bed ${REFERENCE}stringtie_merged.gff3 -fo ${REFERENCE}bedtools_output.fasta
+bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.fsa -bed ${REFERENCE}stringtie_merged.gtf -fo ${REFERENCE}bedtools_output.fasta
 
 conda deactivate
