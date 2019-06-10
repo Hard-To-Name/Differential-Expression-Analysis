@@ -40,23 +40,23 @@ plot(x = temp$mids, y = log10(temp$counts), type="h", xlab="Transcript length (b
 
 ### FPKM values
 gene_expression = as.data.frame(gexpr(bg_genome_filt))
-colnames(gene_expression) <- c("SRR1257637","SRR1257640","SRR1257793","SRR1515155")
+colnames(gene_expression) <- c("SRR1257637","SRR1257640","SRR1257793","SRR1259267")
 max(gene_expression[,"SRR1257637"])
 max(gene_expression[,"SRR1257640"])
 max(gene_expression[,"SRR1257793"])
-max(gene_expression[,"SRR1515155"])
+max(gene_expression[,"SRR1259267"])
 
 ### Plot Distribution of FPKM for all 4 libraries
 data_colors=c("tomato1","tomato2","wheat1","wheat2")
 
 min_nonzero = 1
 data_columns=c(1:4)
-short_names=c("Lsw2-1","WT-1","Lsw2-2","WT-2")
+short_names=c("WT-1","WT-2","Lsw2-1","Lsw2-2")
 boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 4 libraries")
 
 ### Plot expression values for a pair of replicates
 x = gene_expression[,"SRR1257637"]
-y = gene_expression[,"SRR1257793"]
+y = gene_expression[,"SRR1257640"]
 plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (Lsw2, Replicate 1)", ylab="FPKM (Lsw2, Replicate 2)", main="Comparison of expression values for a pair of replicates")
 abline(a=0,b=1)
 rs=cor(x,y)^2
@@ -80,17 +80,17 @@ results_genes = merge(results_genes,bg_gene_names,by.x=c("id"),by.y=c("gene_id")
 
 sig=which(results_genes$pval<0.1)
 results_genes[,"de"] = log2(results_genes[,"fc"])
-hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) Lsw2 vs WT", main="Distribution of differential expression values")
+hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) WT vs Lsw2", main="Distribution of differential expression values")
 abline(v=-2, col="black", lwd=2, lty=2)
 abline(v=2, col="black", lwd=2, lty=2)
 legend("topleft", "Fold-change > 4", lwd=2, lty=2)
 
 ### Display the grand expression values from UHR and HBR and mark those that are significantly differentially expressed
-gene_expression[,"Lsw2"]=apply(gene_expression[,c(1, 3)], 1, mean)
-gene_expression[,"WT"]=apply(gene_expression[,c(2, 4)], 1, mean)
-x=log2(gene_expression[,"Lsw2"]+min_nonzero)
-y=log2(gene_expression[,"WT"]+min_nonzero)
-plot(x=x, y=y, pch=16, cex=0.25, xlab="Lsw2 FPKM (log2)", ylab="WT FPKM (log2)", main="Lsw2 vs WT FPKMs")
+gene_expression[,"WT"]=apply(gene_expression[,c(1, 2)], 1, mean)
+gene_expression[,"Lsw2"]=apply(gene_expression[,c(3, 4)], 1, mean)
+x=log2(gene_expression[,"WT"]+min_nonzero)
+y=log2(gene_expression[,"Lsw2"]+min_nonzero)
+plot(x=x, y=y, pch=16, cex=0.25, xlab="WT FPKM (log2)", ylab="Lsw2 FPKM (log2)", main="WT vs Lsw2 FPKMs")
 abline(a=0, b=1)
 xsig=x[sig]
 ysig=y[sig]
