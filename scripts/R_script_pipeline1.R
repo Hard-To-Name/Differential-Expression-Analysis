@@ -51,9 +51,9 @@ fpkm = log2(fpkm+1)
 boxplot(fpkm,col=as.numeric(pheno_data$population),las=2,ylab='log2(FPKM+1)')
 
 ###19. Make plots of individual transcripts across samples
-ballgown::transcriptNames(bg_genome)[1200] ##      1200 ## "YBR040W_mRNA" 
-ballgown::geneNames(bg_genome)[1200] ##      1200 ## "FIG1" 
-plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::geneNames(bg_genome)[1200],' : ', ballgown::transcriptNames(bg_genome)[1200]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
+ballgown::transcriptNames(bg_genome)[582] ##      1200 ## "MSTRG.278.4" 
+ballgown::geneNames(bg_genome)[582] ##      1200 ## "." 
+plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::transcriptNames(bg_genome)[582]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
 points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(pheno_data$population))
 
 ###20. Plot the structure and expression levels in a sample of all transcripts that share the same gene locus
