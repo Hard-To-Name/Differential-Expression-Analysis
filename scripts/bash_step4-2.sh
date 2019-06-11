@@ -18,7 +18,7 @@ fi
 
 grep -a ${SIGNIFICANT} ${REFERENCE}stringtie_merged.gtf > ${REFERENCE}significant2/${SIGNIFICANT}.gtf
 
-bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.fsa -bed ${REFERENCE}significant2/${SIGNIFICANT}.gtf -fo ${REFERENCE}significant/${SIGNIFICANT}.fasta
+bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.fsa -bed ${REFERENCE}significant2/${SIGNIFICANT}.gtf -fo ${REFERENCE}significant2/${SIGNIFICANT}.fasta
 
 sed -i '/>/d' ${REFERENCE}significant2/${SIGNIFICANT}.fasta
 
