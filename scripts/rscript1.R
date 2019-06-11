@@ -54,13 +54,22 @@ data_columns=c(1:4)
 short_names=c("WT-1","WT-2","Lsw2-1","Lsw2-2")
 boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 4 libraries")
 
-### Plot expression values for a pair of replicates
+### Plot expression values for a pair of wild-type replicates
 x = gene_expression[,"SRR1257637"]
 y = gene_expression[,"SRR1257640"]
+plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (WT, Replicate 1)", ylab="FPKM (WT, Replicate 2)", main="Comparison of expression values for a pair of replicates")
+abline(a=0,b=1)
+rs=cor(x,y)^2
+legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
+
+### Plot expression values for a pair of Lsw2 mutant replicates
+x = gene_expression[,"SRR1257793"]
+y = gene_expression[,"SRR1259267"]
 plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (Lsw2, Replicate 1)", ylab="FPKM (Lsw2, Replicate 2)", main="Comparison of expression values for a pair of replicates")
 abline(a=0,b=1)
 rs=cor(x,y)^2
 legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
+
 
 ### MDS distance plot
 gene_expression[,"sum"]=apply(gene_expression[,data_columns], 1, sum)
@@ -84,6 +93,11 @@ hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change)
 abline(v=-2, col="black", lwd=2, lty=2)
 abline(v=2, col="black", lwd=2, lty=2)
 legend("topleft", "Fold-change > 4", lwd=2, lty=2)
+
+###19. Make plots of individual transcripts across samples
+ballgown::transcriptNames(bg_genome)[582] ## "MSTRG.278.4" 
+plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::transcriptNames(bg_genome)[582]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
+points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(pheno_data$population))
 
 ### Display the grand expression values from UHR and HBR and mark those that are significantly differentially expressed
 gene_expression[,"WT"]=apply(gene_expression[,c(1, 2)], 1, mean)
