@@ -10,7 +10,7 @@ source ~/.miniconda3testrc
 conda activate bedtools
 
 REFERENCE=../S288C_reference_genome_R64-2-1_20150113/
-SIGNIFICANT=$(head -n ${SGE_TASK_ID} ${REFERENCE}significant_transcripts.txt | tail -n 1)
+SIGNIFICANT=$(head -n ${SGE_TASK_ID} ${REFERENCE}significant1.txt | tail -n 1)
 
 echo ${SIGNIFICANT}.gtf
 
