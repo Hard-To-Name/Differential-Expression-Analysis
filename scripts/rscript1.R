@@ -22,6 +22,10 @@ results_genes = stattest(bg_genome_filt, feature="gene", covariate="population",
 ###13. Add gene names and gene IDs to the results_transcripts data frame
 results_transcripts = data.frame(geneNames=ballgown::geneNames(bg_genome_filt), geneIDs=ballgown::geneIDs(bg_genome_filt), results_transcripts)
 
+###14. Sort the results from the smallest P value to the largest
+results_transcripts = arrange(results_transcripts,pval)
+head(results_transcripts, n=10) ## select top 10 transcripts with the smallest p values
+
 ### Plot Distribution of transcript count per gene
 transcript_gene_table = indexes(bg_genome)$t2g
 counts=table(transcript_gene_table[,"g_id"])
