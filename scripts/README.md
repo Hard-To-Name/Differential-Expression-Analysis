@@ -174,4 +174,4 @@ Use stringtie to generate .gtf file and .bam file for each sample reads based on
 ***
 
 # Conclusion
-[Summary](https://docs.google.com/document/d/1-DVtlTs9qefctVLuBl9_tZrZZtpolnDv2y9gMoojaeE/edit?usp=sharing)
+[Report](https://docs.google.com/document/d/1OVK1lC2Tv07apcZXxRsIEHGQw2ZwCAVIk3lZTvoO_bk/edit?usp=sharing)
