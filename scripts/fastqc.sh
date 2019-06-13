@@ -9,6 +9,7 @@
 FASTQ_LOC=../data/
 SAMPLE=$(head -n ${SGE_TASK_ID} ../data/samples.txt | tail -n 1)
 
+source ~/.miniconda3testrc
 conda activate hisat2
 
 fastqc ${FASTQ_LOC}${SAMPLE}_1.fastq.gz

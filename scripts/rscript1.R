@@ -116,7 +116,7 @@ points(x=xsig, y=ysig, col="magenta", pch=16, cex=0.5)
 legend("topleft", "Significant", col="magenta", pch=16)
 
 ### significant transcripts with a log2 fold-change >= 2
-sigpi = which(results_genes[,"pval"]<0.1)
+sigpi = which(results_genes[,"pval"]<0.05)
 sigp = results_genes[sigpi,]
 sigde = which(abs(sigp[,"de"]) >= 1)
 sig_tn_de = sigp[sigde,]
