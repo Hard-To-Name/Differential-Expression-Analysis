@@ -55,7 +55,7 @@ data_colors=c("tomato1","tomato2","wheat1","wheat2")
 
 min_nonzero = 1
 data_columns=c(1:4)
-short_names=c("WT-1","WT-2","Lsw2-1","Lsw2-2")
+short_names=c("WT-1","WT-2","Isw2-1","Isw2-2")
 boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 4 libraries")
 
 ### Plot expression values for a pair of wild-type replicates
@@ -66,10 +66,10 @@ abline(a=0,b=1)
 rs=cor(x,y)^2
 legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 
-### Plot expression values for a pair of Lsw2 mutant replicates
+### Plot expression values for a pair of Isw2 mutant replicates
 x = gene_expression[,"SRR1257793"]
 y = gene_expression[,"SRR1259267"]
-plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (Lsw2, Replicate 1)", ylab="FPKM (Lsw2, Replicate 2)", main="Comparison of expression values for a pair of replicates")
+plot(x=log2(x+min_nonzero), y=log2(y+min_nonzero), pch=16, col="blue", cex=0.25, xlab="FPKM (Isw2, Replicate 1)", ylab="FPKM (Isw2, Replicate 2)", main="Comparison of expression values for a pair of replicates")
 abline(a=0,b=1)
 rs=cor(x,y)^2
 legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
@@ -93,7 +93,7 @@ results_genes = merge(results_genes,bg_gene_names,by.x=c("id"),by.y=c("gene_id")
 
 sig=which(results_genes$pval<0.1)
 results_genes[,"de"] = log2(results_genes[,"fc"])
-hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) WT vs Lsw2", main="Distribution of differential expression values")
+hist(results_genes[sig,"de"], breaks=50, col="seagreen", xlab="log2(Fold change) WT vs Isw2", main="Distribution of differential expression values")
 abline(v=-2, col="black", lwd=2, lty=2)
 abline(v=2, col="black", lwd=2, lty=2)
 legend("topleft", "Fold-change > 4", lwd=2, lty=2)
@@ -105,10 +105,10 @@ points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(phe
 
 ### Display the grand expression values from UHR and HBR and mark those that are significantly differentially expressed
 gene_expression[,"WT"]=apply(gene_expression[,c(1, 2)], 1, mean)
-gene_expression[,"Lsw2"]=apply(gene_expression[,c(3, 4)], 1, mean)
+gene_expression[,"Isw2"]=apply(gene_expression[,c(3, 4)], 1, mean)
 x=log2(gene_expression[,"WT"]+min_nonzero)
-y=log2(gene_expression[,"Lsw2"]+min_nonzero)
-plot(x=x, y=y, pch=16, cex=0.25, xlab="WT FPKM (log2)", ylab="Lsw2 FPKM (log2)", main="WT vs Lsw2 FPKMs")
+y=log2(gene_expression[,"Isw2"]+min_nonzero)
+plot(x=x, y=y, pch=16, cex=0.25, xlab="WT FPKM (log2)", ylab="Isw2 FPKM (log2)", main="WT vs Isw2 FPKMs")
 abline(a=0, b=1)
 xsig=x[sig]
 ysig=y[sig]

@@ -1,5 +1,12 @@
 # Background
 
+## Global Variables
+
+```sh
+FASTQ_LOC=../data/
+SAMPLE=$(head -n ${SGE_TASK_ID} ../data/samples.txt | tail -n 1)
+```
+
 ## Directory Structure
 ```
 .  
@@ -66,6 +73,9 @@ Configuration file [trimmomatic_env.yml](conda_config/trimmomatic_env.yml)
 * r_env
 Configuration file [r_env.yml](conda_config/r_env.yml)
 
+* bedtools
+Configuration file [bedtools_env.yml](conda_config/bedtools_env.yml)
+
 ***
 
 # Pipeline
@@ -84,10 +94,24 @@ Download ```S288C_reference_genome_R64-2-1_20150113.tgz``` and unzip it to ```./
 ## Preprocessing
 
 #### Quality Measurement of Sample Reads
-Use FASTQC to measure the quality scores (phred) across all bases of each sample. Results are available at ```./data/fastqc```
+Use FASTQC to measure the quality scores (phred) across all bases of each sample. Results are available at [here](../data/fastqc).
+```sh
+fastqc ${FASTQ_LOC}${SAMPLE}_1.fastq.gz
+fastqc ${FASTQ_LOC}${SAMPLE}_2.fastq.gz
+
+if [ ! -d ${FASTQ_LOC}fastqc ]; then
+  mkdir -p ${FASTQ_LOC}fastqc;
+fi
+
+mv *.html ${FASTQ_LOC}fastqc
+mv *.zip ${FASTQ_LOC}fastqc
+```
 
 #### Cleaning Reference Genome
-Execute ```./scripts/clean_fsa.sh``` to remove unnecessary headers of all .fastq files
+Remove unnecessary headers of all .fastq files. The script is available [here](clean_fsa.sh).
+```sh
+cat ../S288C_reference_genome_R64-2-1_20150113/S288C_reference_sequence_R64-2-1_20150113.fsa | sed 's/>ref|NC_001133| [org=Saccharomyces cerevisiae] [strain=S288C] [moltype=genomic] [chromosome=I]/I/g' | awk '/^>/{print ">" ++i; next}{print}' > ../S288C_reference_genome_R64-2-1_20150113/S288C_reference_sequence_R64-2-1_20150113_new.fsa
+```
 
 #### Trimming Sample Reads
 Under conda environment trimmomatic, execute ```./scripts/trimmomatic.sh``` to generate both paired reads and unpaired reads at ```./data/trimmomatic```. (Only paired data are used)

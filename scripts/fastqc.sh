@@ -9,7 +9,7 @@
 FASTQ_LOC=../data/
 SAMPLE=$(head -n ${SGE_TASK_ID} ../data/samples.txt | tail -n 1)
 
-module load fastqc
+conda activate hisat2
 
 fastqc ${FASTQ_LOC}${SAMPLE}_1.fastq.gz
 fastqc ${FASTQ_LOC}${SAMPLE}_2.fastq.gz
@@ -20,3 +20,5 @@ fi
 
 mv *.html ${FASTQ_LOC}fastqc
 mv *.zip ${FASTQ_LOC}fastqc
+
+conda deactivate
