@@ -186,8 +186,6 @@ MINLEN:5 \
 AVGQUAL:20
 ```
 
-## Results
-
 ***
 
 # Pipeline Steps
