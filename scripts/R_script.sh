@@ -5,6 +5,10 @@
 #$ -q bio,abio*,pub64,free64,epyc
 #$ -pe openmp 1
 
-#module load R/3.2.2
+source ~/.miniconda3testrc
+conda activate r_env
 
-Rscript R_script_pipeline.R > ../results/R_output.txt
+Rscript rscript1.R
+Rscript rscript2.R
+
+conda deactivate
