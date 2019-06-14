@@ -97,6 +97,20 @@ Instructions of installing Miniconda3 can be found [here](https://conda.io/proje
 
 # Pipeline
 
+**To run the whole program, please make sure every files are in their correct folders and executing the scripts in the following order:**  
+(1) download_fastq.sh  
+(2) fastqc.sh  
+(3) clean_fsa.sh  
+(4) gff_read.sh  
+(5) index_builder.sh  
+(6) trimmomatic.sh  
+(7) bash_step1.sh  
+(8) bash_step2.sh  
+(9) bash_step3.sh  
+(10) R_script.sh  
+(11) bash_step4-1.sh  
+(12) bash_step4-2.sh  
+
 ## Downloading Data
 
 ### Downloading Sample Data
