@@ -5,9 +5,15 @@
 #$ -q bio,abio*,pub64,free64,epyc
 #$ -pe openmp 1
 
+REFERENCE="../S288C_reference_genome_R64-2-1_20150113/"
 
-module load stringtie
-stringtie --merge -p 1 -G S288C_data/genes/S288C.gtf -o stringtie_merged.gtf  S288C_data/mergelist.txt
+#module load stringtie
 
+source ~/.miniconda3testrc
+conda activate hisat2
 
-/data/users/aekimura/bin/gffcompare -r S288C_data/genes/S288C.gtf -G -o merged stringtie_merged.gtf
+stringtie --merge -p 1 -G ${REFERENCE}S288C.gtf -o ${REFERENCE}stringtie_merged.gtf ${REFERENCE}mergelist.txt
+
+gffcompare -r ${REFERENCE}S288C.gtf -G -o ${REFERENCE}merged ${REFERENCE}stringtie_merged.gtf
+
+conda deactivate
