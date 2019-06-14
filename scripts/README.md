@@ -30,6 +30,13 @@ SIGNIFICANT=$(head -n ${SGE_TASK_ID} ${REFERENCE}significant1.txt | tail -n 1)
 ├── S288C_reference_genome_R64-2-1_20150113  
 |   ├── index  
 |   |   └── *.ht2  
+|   ├── significant1 (for 4 samples in group 30°C)  
+|   |   ├── *.gtf  
+|   |   └── *.fasta  
+|   ├── significant2 (for 4 samples in group 37°C)  
+|   |   ├── *.gtf  
+|   |   └── *.fasta  
+|   ├── .gtf of merged annotation from StringTie
 |   ├── .gtf of reference genome  
 |   ├── .fsa of reference genome before and after cleaning headers  
 |   ├── phenotype.csv for ballgown  
@@ -81,7 +88,10 @@ Configuration file [trimmomatic_env.yml](conda_config/trimmomatic_env.yml)
 Configuration file [r_env.yml](conda_config/r_env.yml)
 
 * bedtools
-Configuration file [bedtools_env.yml](conda_config/bedtools_env.yml)
+Configuration file [bedtools_env.yml](conda_config/bedtools_env.yml)  
+  
+Instructions of installing Miniconda3 can be found [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html). Environments can be created by the following command:  
+```conda env create -f environment.yml```
 
 ***
 
@@ -403,3 +413,352 @@ bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.
 
 # Conclusion
 [Report](https://docs.google.com/document/d/1OVK1lC2Tv07apcZXxRsIEHGQw2ZwCAVIk3lZTvoO_bk/edit?usp=sharing)
+
+**Detailed Directory Structure Listed Here:**  
+```
+.
+|-- ballgown
+|   |-- SRR1257637
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1257637_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1257640
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1257640_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1257793
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1257793_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1259267
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1259267_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1514794
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1514794_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1514795
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1514795_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1515155
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1515155_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- SRR1515156
+|   |   |-- e2t.ctab
+|   |   |-- e_data.ctab
+|   |   |-- i2t.ctab
+|   |   |-- i_data.ctab
+|   |   |-- SRR1515156_S288C.gtf
+|   |   `-- t_data.ctab
+|   |-- temp30
+|   |   |-- SRR1257637
+|   |   |   |-- e2t.ctab
+|   |   |   |-- e_data.ctab
+|   |   |   |-- i2t.ctab
+|   |   |   |-- i_data.ctab
+|   |   |   |-- SRR1257637_S288C.gtf
+|   |   |   `-- t_data.ctab
+|   |   |-- SRR1257640
+|   |   |   |-- e2t.ctab
+|   |   |   |-- e_data.ctab
+|   |   |   |-- i2t.ctab
+|   |   |   |-- i_data.ctab
+|   |   |   |-- SRR1257640_S288C.gtf
+|   |   |   `-- t_data.ctab
+|   |   |-- SRR1257793
+|   |   |   |-- e2t.ctab
+|   |   |   |-- e_data.ctab
+|   |   |   |-- i2t.ctab
+|   |   |   |-- i_data.ctab
+|   |   |   |-- SRR1257793_S288C.gtf
+|   |   |   `-- t_data.ctab
+|   |   `-- SRR1259267
+|   |       |-- e2t.ctab
+|   |       |-- e_data.ctab
+|   |       |-- i2t.ctab
+|   |       |-- i_data.ctab
+|   |       |-- SRR1259267_S288C.gtf
+|   |       `-- t_data.ctab
+|   `-- temp37
+|       |-- SRR1514794
+|       |   |-- e2t.ctab
+|       |   |-- e_data.ctab
+|       |   |-- i2t.ctab
+|       |   |-- i_data.ctab
+|       |   |-- SRR1514794_S288C.gtf
+|       |   `-- t_data.ctab
+|       |-- SRR1514795
+|       |   |-- e2t.ctab
+|       |   |-- e_data.ctab
+|       |   |-- i2t.ctab
+|       |   |-- i_data.ctab
+|       |   |-- SRR1514795_S288C.gtf
+|       |   `-- t_data.ctab
+|       |-- SRR1515155
+|       |   |-- e2t.ctab
+|       |   |-- e_data.ctab
+|       |   |-- i2t.ctab
+|       |   |-- i_data.ctab
+|       |   |-- SRR1515155_S288C.gtf
+|       |   `-- t_data.ctab
+|       `-- SRR1515156
+|           |-- e2t.ctab
+|           |-- e_data.ctab
+|           |-- i2t.ctab
+|           |-- i_data.ctab
+|           |-- SRR1515156_S288C.gtf
+|           `-- t_data.ctab
+|-- data
+|   |-- samples.txt
+|   |-- SRR1257637_1.fastq.gz
+|   |-- SRR1257637_2.fastq.gz
+|   |-- SRR1257640_1.fastq.gz
+|   |-- SRR1257640_2.fastq.gz
+|   |-- SRR1257793_1.fastq.gz
+|   |-- SRR1257793_2.fastq.gz
+|   |-- SRR1259267_1.fastq.gz
+|   |-- SRR1259267_2.fastq.gz
+|   |-- SRR1514794_1.fastq.gz
+|   |-- SRR1514794_2.fastq.gz
+|   |-- SRR1514795_1.fastq.gz
+|   |-- SRR1514795_2.fastq.gz
+|   |-- SRR1515155_1.fastq.gz
+|   |-- SRR1515155_2.fastq.gz
+|   |-- SRR1515156_1.fastq.gz
+|   |-- SRR1515156_2.fastq.gz
+|   |-- tri_copy
+|   |   |-- SRR1257637_1_paired.fastq.gz
+|   |   |-- SRR1257637_1_unpaired.fastq.gz
+|   |   |-- SRR1257637_2_paired.fastq.gz
+|   |   |-- SRR1257637_2_unpaired.fastq.gz
+|   |   |-- SRR1257640_1_paired.fastq.gz
+|   |   |-- SRR1257640_1_unpaired.fastq.gz
+|   |   |-- SRR1257640_2_paired.fastq.gz
+|   |   |-- SRR1257640_2_unpaired.fastq.gz
+|   |   |-- SRR1257793_1_paired.fastq.gz
+|   |   |-- SRR1257793_1_unpaired.fastq.gz
+|   |   |-- SRR1257793_2_paired.fastq.gz
+|   |   |-- SRR1257793_2_unpaired.fastq.gz
+|   |   |-- SRR1259267_1_paired.fastq.gz
+|   |   |-- SRR1259267_1_unpaired.fastq.gz
+|   |   |-- SRR1259267_2_paired.fastq.gz
+|   |   |-- SRR1259267_2_unpaired.fastq.gz
+|   |   |-- SRR1514794_1_paired.fastq.gz
+|   |   |-- SRR1514794_1_unpaired.fastq.gz
+|   |   |-- SRR1514794_2_paired.fastq.gz
+|   |   |-- SRR1514794_2_unpaired.fastq.gz
+|   |   |-- SRR1514795_1_paired.fastq.gz
+|   |   |-- SRR1514795_1_unpaired.fastq.gz
+|   |   |-- SRR1514795_2_paired.fastq.gz
+|   |   |-- SRR1514795_2_unpaired.fastq.gz
+|   |   |-- SRR1515155_1_paired.fastq.gz
+|   |   |-- SRR1515155_1_unpaired.fastq.gz
+|   |   |-- SRR1515155_2_paired.fastq.gz
+|   |   |-- SRR1515155_2_unpaired.fastq.gz
+|   |   |-- SRR1515156_1_paired.fastq.gz
+|   |   |-- SRR1515156_1_unpaired.fastq.gz
+|   |   |-- SRR1515156_2_paired.fastq.gz
+|   |   `-- SRR1515156_2_unpaired.fastq.gz
+|   |-- trimmomatic
+|   |   |-- SRR1257637_1_paired.fastq.gz
+|   |   |-- SRR1257637_1_unpaired.fastq.gz
+|   |   |-- SRR1257637_2_paired.fastq.gz
+|   |   |-- SRR1257637_2_unpaired.fastq.gz
+|   |   |-- SRR1257640_1_paired.fastq.gz
+|   |   |-- SRR1257640_1_unpaired.fastq.gz
+|   |   |-- SRR1257640_2_paired.fastq.gz
+|   |   |-- SRR1257640_2_unpaired.fastq.gz
+|   |   |-- SRR1257793_1_paired.fastq.gz
+|   |   |-- SRR1257793_1_unpaired.fastq.gz
+|   |   |-- SRR1257793_2_paired.fastq.gz
+|   |   |-- SRR1257793_2_unpaired.fastq.gz
+|   |   |-- SRR1259267_1_paired.fastq.gz
+|   |   |-- SRR1259267_1_unpaired.fastq.gz
+|   |   |-- SRR1259267_2_paired.fastq.gz
+|   |   |-- SRR1259267_2_unpaired.fastq.gz
+|   |   |-- SRR1514794_1_paired.fastq.gz
+|   |   |-- SRR1514794_1_unpaired.fastq.gz
+|   |   |-- SRR1514794_2_paired.fastq.gz
+|   |   |-- SRR1514794_2_unpaired.fastq.gz
+|   |   |-- SRR1514795_1_paired.fastq.gz
+|   |   |-- SRR1514795_1_unpaired.fastq.gz
+|   |   |-- SRR1514795_2_paired.fastq.gz
+|   |   |-- SRR1514795_2_unpaired.fastq.gz
+|   |   |-- SRR1515155_1_paired.fastq.gz
+|   |   |-- SRR1515155_1_unpaired.fastq.gz
+|   |   |-- SRR1515155_2_paired.fastq.gz
+|   |   |-- SRR1515155_2_unpaired.fastq.gz
+|   |   |-- SRR1515156_1_paired.fastq.gz
+|   |   |-- SRR1515156_1_unpaired.fastq.gz
+|   |   |-- SRR1515156_2_paired.fastq.gz
+|   |   `-- SRR1515156_2_unpaired.fastq.gz
+|   `-- Trimmomatic-0.36
+|       |-- adapters
+|       |   |-- NexteraPE-PE.fa
+|       |   |-- TruSeq2-PE.fa
+|       |   |-- TruSeq2-SE.fa
+|       |   |-- TruSeq3-PE-2.fa
+|       |   |-- TruSeq3-PE.fa
+|       |   `-- TruSeq3-SE.fa
+|       |-- LICENSE
+|       `-- trimmomatic-0.36.jar
+|-- results
+|   |-- genome_gene_results1.csv
+|   |-- genome_gene_results.csv
+|   |-- genome_transcript_results1.csv
+|   |-- genome_transcript_results.csv
+|   |-- R_output.txt
+|   |-- significant_transcripts.csv
+|   |-- SRR1257637_S288C.bam
+|   |-- SRR1257637_S288C.gtf
+|   |-- SRR1257637_S288C.sam
+|   |-- SRR1257640_S288C.bam
+|   |-- SRR1257640_S288C.gtf
+|   |-- SRR1257640_S288C.sam
+|   |-- SRR1257793_S288C.bam
+|   |-- SRR1257793_S288C.gtf
+|   |-- SRR1257793_S288C.sam
+|   |-- SRR1259267_S288C.bam
+|   |-- SRR1259267_S288C.gtf
+|   |-- SRR1259267_S288C.sam
+|   |-- SRR1514794_S288C.bam
+|   |-- SRR1514794_S288C.gtf
+|   |-- SRR1514794_S288C.sam
+|   |-- SRR1514795_S288C.bam
+|   |-- SRR1514795_S288C.gtf
+|   |-- SRR1514795_S288C.sam
+|   |-- SRR1515155_S288C.bam
+|   |-- SRR1515155_S288C.gtf
+|   |-- SRR1515155_S288C.sam
+|   |-- SRR1515156_S288C.bam
+|   |-- SRR1515156_S288C.gtf
+|   `-- SRR1515156_S288C.sam
+|-- S288C_reference_genome_R64-2-1_20150113
+|   |-- bedtools_output.fasta
+|   |-- gene_association_R64-2-1_20150113.sgd
+|   |-- grep.sh
+|   |-- index
+|   |   |-- S288C.1.ht2
+|   |   |-- S288C.2.ht2
+|   |   |-- S288C.3.ht2
+|   |   |-- S288C.4.ht2
+|   |   |-- S288C.5.ht2
+|   |   |-- S288C.6.ht2
+|   |   |-- S288C.7.ht2
+|   |   `-- S288C.8.ht2
+|   |-- merged.annotated.gtf
+|   |-- merged.loci
+|   |-- merged.stats
+|   |-- merged.stringtie_merged.gtf.refmap
+|   |-- merged.stringtie_merged.gtf.tmap
+|   |-- merged.tracking
+|   |-- mergelist.txt
+|   |-- NotFeature_R64-2-1_20150113.fasta
+|   |-- phenotype1.csv
+|   |-- phenotype2.csv
+|   |-- phenotype.csv
+|   |-- rna_coding_R64-2-1_20150113.fasta
+|   |-- S288C.gtf
+|   |-- S288C_reference_sequence_R64-2-1_20150113
+|   |-- S288C_reference_sequence_R64-2-1_20150113.fsa
+|   |-- S288C_reference_sequence_R64-2-1_20150113.fsa.fai
+|   |-- S288C_reference_sequence_R64-2-1_20150113_new.fsa
+|   |-- S288C_reference_sequence_R64-2-1_20150113_new.fsa.fai
+|   |-- saccharomyces_cerevisiae_R64-2-1_20150113.gff
+|   |-- sed
+|   |-- significant1
+|   |   |-- MSTRG.107.1.fasta
+|   |   |-- MSTRG.107.1.gtf
+|   |   |-- MSTRG.179.1.fasta
+|   |   |-- MSTRG.179.1.gtf
+|   |   |-- MSTRG.196.1.fasta
+|   |   |-- MSTRG.196.1.gtf
+|   |   |-- MSTRG.258.1.fasta
+|   |   |-- MSTRG.258.1.gtf
+|   |   |-- MSTRG.278.4.fasta
+|   |   |-- MSTRG.278.4.gtf
+|   |   |-- MSTRG.30.2.fasta
+|   |   |-- MSTRG.30.2.gtf
+|   |   |-- MSTRG.344.1.fasta
+|   |   |-- MSTRG.344.1.gtf
+|   |   |-- MSTRG.66.13.fasta
+|   |   |-- MSTRG.66.13.gtf
+|   |   |-- MSTRG.8.3.fasta
+|   |   |-- MSTRG.8.3.gtf
+|   |   |-- MSTRG.88.1.fasta
+|   |   `-- MSTRG.88.1.gtf
+|   |-- significant1.txt
+|   |-- significant2
+|   |   |-- MSTRG.129.1.fasta
+|   |   |-- MSTRG.129.1.gtf
+|   |   |-- MSTRG.183.3.fasta
+|   |   |-- MSTRG.183.3.gtf
+|   |   |-- MSTRG.197.2.fasta
+|   |   |-- MSTRG.197.2.gtf
+|   |   |-- MSTRG.304.15.fasta
+|   |   |-- MSTRG.304.15.gtf
+|   |   |-- MSTRG.315.1.fasta
+|   |   |-- MSTRG.315.1.gtf
+|   |   |-- MSTRG.376.1.fasta
+|   |   |-- MSTRG.376.1.gtf
+|   |   |-- MSTRG.395.1.fasta
+|   |   |-- MSTRG.395.1.gtf
+|   |   |-- MSTRG.42.5.fasta
+|   |   |-- MSTRG.42.5.gtf
+|   |   |-- MSTRG.66.26.fasta
+|   |   |-- MSTRG.66.26.gtf
+|   |   |-- MSTRG.92.1.fasta
+|   |   `-- MSTRG.92.1.gtf
+|   |-- significant2.txt
+|   |-- stringtie_merged.gtf
+|   `-- tmp.XXFy1XkF
+|-- scripts
+|   |-- bash_step1.sh
+|   |-- bash_step2.sh
+|   |-- bash_step3.sh
+|   |-- bash_step4-1.sh
+|   |-- bash_step4-2.sh
+|   |-- clean_fsa.sh
+|   |-- download_fastq.sh
+|   |-- fastqc.sh
+|   |-- gffread.sh
+|   |-- index_builder.sh
+|   |-- rscript1.R
+|   |-- rscript2.R
+|   |-- R_script.sh
+|   `-- trimmomatic.sh
+`-- Trimmomatic-0.36
+    |-- adapters
+    |   |-- NexteraPE-PE.fa
+    |   |-- TruSeq2-PE.fa
+    |   |-- TruSeq2-SE.fa
+    |   |-- TruSeq3-PE-2.fa
+    |   |-- TruSeq3-PE.fa
+    |   `-- TruSeq3-SE.fa
+    |-- LICENSE
+    `-- trimmomatic-0.36.jar
+```
