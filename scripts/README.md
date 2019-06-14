@@ -219,7 +219,10 @@ Use stringtie to generate .gtf file and .bam file for each sample reads based on
 stringtie -e -B -p 1 -G ${REFERENCE}stringtie_merged.gtf -o ../ballgown/${SAMPLE}/${SAMPLE}_S288C.gtf ../results/${SAMPLE}_S288C.bam
 ```
 
+There will be 8 files for the samples in ```../ballgown```. Create two files named ```temp30``` and ```temp37``` respectively; then put all 4 files listed in ```phenotype1.csv``` in folder ```temp30``` and put all 4 files listed in ```phenotype2.csv``` in folder ```temp37```.
+
 **7. Perform statistical analysis**
+The script for group under temperature 30°C is available [here](rscript1.R); The script for group under temperature 37°C is available [here](rscript2.R);
 
 * Load relevant R packages
 ```R
@@ -380,6 +383,12 @@ xsig=x[sig]
 ysig=y[sig]
 points(x=xsig, y=ysig, col="magenta", pch=16, cex=0.5)
 legend("topleft", "Significant", col="magenta", pch=16)
+
+**Extract the annotation of each significant transcript using grep -a; Extract sequences of the most significant transcripts using Bedtools**  
+```sh
+grep -a ${SIGNIFICANT} ${REFERENCE}stringtie_merged.gtf > ${REFERENCE}significant1/${SIGNIFICANT}.gtf
+
+bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.fsa -bed ${REFERENCE}significant1/${SIGNIFICANT}.gtf -fo ${REFERENCE}significant1/${SIGNIFICANT}.fasta
 ```
 
 ## Code
@@ -388,7 +397,7 @@ legend("topleft", "Significant", col="magenta", pch=16)
 ```./scripts/bash_step2.sh```: Step 4 & 5  
 ```./scripts/bash_step3.sh```: Step 6  
 ```./scripts/R_script.sh```: Step 7  
-(```./scripts/rscript1.R``` & ```./scripts/rscript1.R``` includes all R codes for Step 7)
+(```./scripts/rscript1.R``` & ```./scripts/rscript2.R``` includes all R codes for Step 7)
 
 ***
 
