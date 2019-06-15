@@ -308,7 +308,7 @@ legend("topright", legend_text, lty=NULL)
 ```
 
 ![transcript_count_length](img/transcript_count_length.png?raw=true)
-(Distribution of transcript count per gene on the left; Distribution of transcript lengths on the right)
+(Distribution of transcript count per gene for this step; Distribution of transcript lengths for the next step)
 
 * Plot Distribution of transcript lengths
 ```R
