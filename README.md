@@ -190,6 +190,8 @@ AVGQUAL:20
 
 # Pipeline Steps
 
+![flowchart](img/flowchart.png?raw=true)
+
 ## Description
 
 **1. Map the reads for each sample to the reference genome**  
@@ -305,6 +307,9 @@ legend_text = c(paste("Genes with one transcript =", c_one), paste("Genes with m
 legend("topright", legend_text, lty=NULL)
 ```
 
+![transcript_count_length](img/transcript_count_length.png?raw=true)
+(Distribution of transcript count per gene on the left; Distribution of transcript lengths on the right)
+
 * Plot Distribution of transcript lengths
 ```R
 full_table <- texpr(bg_genome, 'all')
@@ -339,6 +344,8 @@ short_names=c("WT-1","WT-2","Isw2-1","Isw2-2")
 boxplot(log2(gene_expression[,data_columns]+min_nonzero), col=data_colors, names=short_names, las=2, ylab="log2(FPKM)", main="Distribution of FPKMs for all 4 libraries")
 ```
 
+![FPKM](img/FPKM.png?raw=true)
+
 * Plot expression values for pairs of wild-type replicates
 ```R
 ### First Pair
@@ -358,6 +365,8 @@ rs=cor(x,y)^2
 legend("topleft", paste("R squared = ", round(rs, digits=3), sep=""), lwd=1, col="black")
 ```
 
+![replicate](img/replicate.png?raw=true)
+
 * Compute the Pearson correlation between all pairs of libraries; Plot Multidimensional Scaling (MDS) distance plots for the libraries
 
 ```R
@@ -371,6 +380,8 @@ plot(mds$points, type="n", xlab="", ylab="", main="MDS distance plot (all non-ze
 points(mds$points[,1], mds$points[,2], col="grey", cex=2, pch=16)
 text(mds$points[,1], mds$points[,2], short_names, col=data_colors)
 ```
+
+![MDS](img/MDS.png?raw=true)
 
 * View the distribution of differential expression values with significance p < 0.05
 ```R
@@ -386,12 +397,16 @@ abline(v=2, col="black", lwd=2, lty=2)
 legend("topleft", "Fold-change > 4", lwd=2, lty=2)
 ```
 
+![differential_expression_histogram](img/differential_expression_histogram.png?raw=true)
+
 * Make plots of individual transcripts across samples
 ```R
 ballgown::transcriptNames(bg_genome)[582] ## "MSTRG.278.4" 
 plot(fpkm[12,] ~ pheno_data$population, border=c(1,2), main=paste(ballgown::transcriptNames(bg_genome)[582]),pch=19, xlab="Population", ylab='log2(FPKM+1)')
 points(fpkm[12,] ~ jitter(as.numeric(pheno_data$population)), col=as.numeric(pheno_data$population))
 ```
+
+![individual](img/individual.png?raw=true)
 
 * Display the grand expression values from UHR and HBR and mark those that are significantly differentially expressed
 ```R
@@ -426,7 +441,9 @@ bedtools getfasta -fi ${REFERENCE}S288C_reference_sequence_R64-2-1_20150113_new.
 # Conclusion
 [Report](https://docs.google.com/document/d/1OVK1lC2Tv07apcZXxRsIEHGQw2ZwCAVIk3lZTvoO_bk/edit?usp=sharing)
 
-**Detailed Directory Structure Listed Here:**  
+***
+
+# Detailed Directory Structure Listed Here
 ```
 .
 |-- ballgown
