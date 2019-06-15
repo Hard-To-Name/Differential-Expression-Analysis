@@ -101,7 +101,7 @@ Instructions of installing Miniconda3 can be found [here](https://conda.io/proje
 (1) download_fastq.sh  
 (2) fastqc.sh  
 (3) clean_fsa.sh  
-(4) gff_read.sh  
+(4) gffread.sh  
 (5) index_builder.sh  
 (6) trimmomatic.sh  
 (7) bash_step1.sh  
